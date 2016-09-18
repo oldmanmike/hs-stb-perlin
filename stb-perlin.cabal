@@ -1,0 +1,40 @@
+name:                stb-perlin
+version:             0.1.0.0
+synopsis:            A wrapper around Sean Barrett's Perlin implementation.
+description:         Please see README.md
+homepage:            https://github.com/oldmanmike/hs-stb-perlin#readme
+license:             PublicDomain
+license-file:        LICENSE
+author:              Michael Carpenter
+maintainer:          oldmanmike.dev@gmail.com
+category:            Graphics, Noise
+build-type:          Simple
+extra-source-files:  cbits/stb_perlin.h
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Perlin
+  build-depends:       base >= 4.7 && < 5
+  default-language:    Haskell2010
+
+test-suite stb-perlin-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base,
+                       stb-perlin
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+benchmark stb-perlin-bench
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      src, bench
+  main-is:             BenchmarkSuite.hs
+  build-depends:       base
+  ghc-options:         -Wall -O2
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/oldmanmike/hs-stb-perlin
